@@ -24,6 +24,18 @@ class RawMaterialController {
       next(err);
     }
   }
+
+  public async findAll(_req: Request, res: Response, next: NextFunction) {
+    const rawMaterialService = new RawMaterialService();
+
+    try {
+      const rawMaterials = await rawMaterialService.findAll();
+
+      return res.status(200).json(rawMaterials);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export { RawMaterialController };

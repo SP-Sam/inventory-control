@@ -34,6 +34,12 @@ class RawMaterialService {
 
     return false;
   }
+
+  public async findAll(): Promise<RawMaterial[] | null> {
+    const rawMaterials = await this.db.rawMaterial.findMany();
+
+    return rawMaterials;
+  }
 }
 
 export { RawMaterialService };
