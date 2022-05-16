@@ -1,5 +1,7 @@
 import cors, { CorsOptions } from 'cors';
 import express, { Express, Request, Response } from 'express';
+import { ErrorHandleMiddleware } from './middlewares/ErrorHandlerMiddleware';
+import { productRouter } from './routers/ProductRouter';
 
 class App {
   private app: Express;
@@ -8,6 +10,7 @@ class App {
     this.app = express();
     this.config();
     this.routers();
+    this.errors();
   }
 
   private config(): void {
@@ -27,6 +30,12 @@ class App {
     this.app.get('/', (_req: Request, res: Response) => {
       return res.status(200).json({ message: 'Welcome to Autoflex API!' });
     });
+
+    this.app.use('/products', productRouter);
+  }
+
+  private errors(): void {
+    this.app.use(ErrorHandleMiddleware);
   }
 
   public start(PORT: string | number): void {

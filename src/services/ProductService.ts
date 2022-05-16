@@ -10,7 +10,10 @@ class ProductService {
     this.db = prismaClient;
   }
 
-  public async create(newProduct: IProduct): Promise<Product> {
+  public async create(newProduct: IProduct): Promise<Product | null> {
+    const productExists = await this.findByName(newProduct.name);
+    if (productExists) return null;
+
     const rawMaterials: IRawMaterial[] = newProduct.rawMaterials.map(
       (item) => ({
         name: item.name,
@@ -38,6 +41,14 @@ class ProductService {
     });
 
     return createdProduct;
+  }
+
+  private async findByName(name: string): Promise<boolean> {
+    const foundProduct = await this.db.product.findFirst({ where: { name } });
+
+    if (foundProduct) return true;
+
+    return false;
   }
 }
 
