@@ -28,9 +28,8 @@ class ProductService {
         rawMaterials: {
           create: rawMaterials.map((item) => {
             const rawMaterial = {
-              create: {
+              connect: {
                 name: item.name,
-                quantity: item.quantity,
               },
             };
 
