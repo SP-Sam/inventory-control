@@ -40,6 +40,25 @@ class RawMaterialService {
 
     return rawMaterials;
   }
+
+  public async remove(code: number): Promise<RawMaterial> {
+    const rawMaterialExists = await this.findByCode(code);
+    if (!rawMaterialExists) return null;
+
+    const rawMaterial = await this.db.rawMaterial.delete({ where: { code } });
+
+    return rawMaterial;
+  }
+
+  private async findByCode(code: number): Promise<boolean> {
+    const foundRawMaterial = await this.db.rawMaterial.findUnique({
+      where: { code },
+    });
+
+    if (foundRawMaterial) return true;
+
+    return false;
+  }
 }
 
 export { RawMaterialService };

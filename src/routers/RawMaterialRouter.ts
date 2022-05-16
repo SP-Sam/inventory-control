@@ -7,5 +7,6 @@ const rawMaterialController = new RawMaterialController();
 
 rawMaterialRouter.post('/', rawMaterialController.create);
 rawMaterialRouter.get('/', rawMaterialController.findAll);
+rawMaterialRouter.delete('/:code', rawMaterialController.remove);
 
 export { rawMaterialRouter };

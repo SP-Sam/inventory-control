@@ -36,6 +36,27 @@ class RawMaterialController {
       next(err);
     }
   }
+
+  public async remove(req: Request, res: Response, next: NextFunction) {
+    const rawMaterialService = new RawMaterialService();
+
+    try {
+      const { code } = req.params;
+      const removedRawMaterial = await rawMaterialService.remove(Number(code));
+
+      if (!removedRawMaterial) {
+        return res
+          .status(404)
+          .json({ message: `raw-material with the code "${code}" not found` });
+      }
+
+      return res
+        .status(200)
+        .json({ message: `"${removedRawMaterial.name}" deleted successfully` });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export { RawMaterialController };
