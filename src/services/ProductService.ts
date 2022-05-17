@@ -50,10 +50,32 @@ class ProductService {
 
   public async findAll(): Promise<Product[]> {
     const products = await this.db.product.findMany({
-      include: { rawMaterials: true },
+      include: {
+        rawMaterials: {
+          select: {
+            rawMaterialId: true,
+            quantity: true,
+          },
+        },
+      },
     });
 
     return products;
+  }
+
+  public async update(code: number, newProduct): Promise<Product | null> {
+    const productExists = await this.findByCode(code);
+    if (!productExists) return null;
+
+    const changedProduct = await this.db.product.update({
+      where: { code },
+      data: {
+        name: newProduct.name,
+        price: newProduct.price,
+      },
+    });
+
+    return changedProduct;
   }
 
   public async remove(code: number): Promise<Product | null> {
