@@ -35,7 +35,7 @@ class RawMaterialService {
     return false;
   }
 
-  private async findByName(name: string): Promise<boolean> {
+  public async findByName(name: string): Promise<boolean> {
     const foundRawMaterial = await this.db.rawMaterial.findFirst({
       where: { name },
     });

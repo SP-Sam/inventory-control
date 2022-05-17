@@ -20,6 +20,9 @@ class ProductController {
           .status(400)
           .json({ message: `The product "${name}" is already registered` });
       }
+      if (typeof newProduct === 'string') {
+        return res.status(400).json({ message: newProduct });
+      }
 
       return res.status(201).json(newProduct);
     } catch (err) {
