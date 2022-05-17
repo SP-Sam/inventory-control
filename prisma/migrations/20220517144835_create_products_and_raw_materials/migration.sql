@@ -30,4 +30,4 @@ CREATE TABLE `RawMaterialsOnProducts` (
 ALTER TABLE `RawMaterialsOnProducts` ADD CONSTRAINT `RawMaterialsOnProducts_raw_material_code_fkey` FOREIGN KEY (`raw_material_code`) REFERENCES `raw_materials`(`code`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `RawMaterialsOnProducts` ADD CONSTRAINT `RawMaterialsOnProducts_product_code_fkey` FOREIGN KEY (`product_code`) REFERENCES `products`(`code`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `RawMaterialsOnProducts` ADD CONSTRAINT `RawMaterialsOnProducts_product_code_fkey` FOREIGN KEY (`product_code`) REFERENCES `products`(`code`) ON DELETE CASCADE ON UPDATE CASCADE;

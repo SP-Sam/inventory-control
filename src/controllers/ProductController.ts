@@ -29,6 +29,27 @@ class ProductController {
       next(err);
     }
   }
+
+  public async remove(req: Request, res: Response, next: NextFunction) {
+    const productService = new ProductService();
+
+    try {
+      const { code } = req.params;
+
+      const product = await productService.remove(Number(code));
+      if (!product) {
+        return res
+          .status(400)
+          .json({ message: `Product with the code "${code}" not found` });
+      }
+
+      return res
+        .status(200)
+        .json({ message: `"${product.name}" deleted successfully` });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export { ProductController };

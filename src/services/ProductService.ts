@@ -25,7 +25,6 @@ class ProductService {
     );
 
     const isRawMaterialsValid = await this.verifyRawMaterials(rawMaterials);
-
     if (!isRawMaterialsValid) return 'All raw-materials must be registered';
 
     const createdProduct = await this.db.product.create({
@@ -44,16 +43,30 @@ class ProductService {
           }),
         },
       },
-      include: {
-        rawMaterials: true,
-      },
     });
 
     return createdProduct;
   }
 
+  public async remove(code: number): Promise<Product | null> {
+    const productExists = await this.findByCode(code);
+    if (!productExists) return null;
+
+    const product = await this.db.product.delete({ where: { code } });
+
+    return product;
+  }
+
   private async findByName(name: string): Promise<boolean> {
     const foundProduct = await this.db.product.findFirst({ where: { name } });
+
+    if (foundProduct) return true;
+
+    return false;
+  }
+
+  private async findByCode(code: number): Promise<boolean> {
+    const foundProduct = await this.db.product.findUnique({ where: { code } });
 
     if (foundProduct) return true;
 

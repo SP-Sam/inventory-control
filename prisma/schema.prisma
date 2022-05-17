@@ -31,7 +31,7 @@ model Product {
 model RawMaterialsOnProducts {
   rawMaterial   RawMaterial @relation(fields: [rawMaterialId], references: [code])
   rawMaterialId Int         @map("raw_material_code")
-  product       Product     @relation(fields: [productId], references: [code])
+  product       Product     @relation(fields: [productId], references: [code], onDelete: Cascade, onUpdate: Cascade)
   productId     Int         @map("product_code")
 
   @@id([rawMaterialId, productId])
