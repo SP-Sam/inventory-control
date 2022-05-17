@@ -37,6 +37,30 @@ class RawMaterialController {
     }
   }
 
+  public async update(req: Request, res: Response, next: NextFunction) {
+    const rawMaterialService = new RawMaterialService();
+
+    try {
+      const { code } = req.params;
+      const { name, quantity }: IRawMaterial = req.body;
+
+      const changedRawMaterial = await rawMaterialService.update(Number(code), {
+        name,
+        quantity,
+      });
+
+      if (!changedRawMaterial) {
+        return res
+          .status(404)
+          .json({ message: `raw-material with the code "${code}" not found` });
+      }
+
+      return res.status(200).json(changedRawMaterial);
+    } catch (err) {
+      next(err);
+    }
+  }
+
   public async remove(req: Request, res: Response, next: NextFunction) {
     const rawMaterialService = new RawMaterialService();
 
