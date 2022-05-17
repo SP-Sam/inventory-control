@@ -33,6 +33,7 @@ model RawMaterialsOnProducts {
   rawMaterialId Int         @map("raw_material_code")
   product       Product     @relation(fields: [productId], references: [code], onDelete: Cascade, onUpdate: Cascade)
   productId     Int         @map("product_code")
+  quantity      Int
 
   @@id([rawMaterialId, productId])
 }

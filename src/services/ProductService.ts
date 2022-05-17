@@ -39,13 +39,21 @@ class ProductService {
               },
             };
 
-            return { rawMaterial };
+            return { rawMaterial, quantity: item.quantity };
           }),
         },
       },
     });
 
     return createdProduct;
+  }
+
+  public async findAll(): Promise<Product[]> {
+    const products = await this.db.product.findMany({
+      include: { rawMaterials: true },
+    });
+
+    return products;
   }
 
   public async remove(code: number): Promise<Product | null> {

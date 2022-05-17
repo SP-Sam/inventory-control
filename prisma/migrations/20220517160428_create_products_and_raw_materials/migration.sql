@@ -22,6 +22,7 @@ CREATE TABLE `products` (
 CREATE TABLE `RawMaterialsOnProducts` (
     `raw_material_code` INTEGER NOT NULL,
     `product_code` INTEGER NOT NULL,
+    `quantity` INTEGER NOT NULL,
 
     PRIMARY KEY (`raw_material_code`, `product_code`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

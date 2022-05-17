@@ -30,6 +30,18 @@ class ProductController {
     }
   }
 
+  public async findAll(_req: Request, res: Response, next: NextFunction) {
+    const productService = new ProductService();
+
+    try {
+      const products = await productService.findAll();
+
+      return res.status(200).json(products);
+    } catch (err) {
+      next(err);
+    }
+  }
+
   public async remove(req: Request, res: Response, next: NextFunction) {
     const productService = new ProductService();
 
