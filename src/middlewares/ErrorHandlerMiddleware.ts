@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-const ErrorHandleMiddleware = (
+const ErrorHandlerMiddleware = (
   err: Error,
   _req: Request,
   res: Response,
@@ -10,4 +10,4 @@ const ErrorHandleMiddleware = (
   return res.status(500).json({ message: 'Internal error' });
 };
 
-export { ErrorHandleMiddleware };
+export { ErrorHandlerMiddleware };

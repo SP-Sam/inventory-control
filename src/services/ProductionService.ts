@@ -1,14 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 import { prismaClient } from '../database/prismaClient';
+import { IProduction } from '../interfaces/productionInterfaces';
 import { ProductService } from './ProductService';
 import { RawMaterialService } from './RawMaterialService';
-
-interface IProduction {
-  productName: string;
-  price: number;
-  production: number;
-  totalProductionValue: number;
-}
 
 class ProductionService {
   private db: PrismaClient;
@@ -23,7 +17,9 @@ class ProductionService {
 
   public async getProduction(): Promise<IProduction[]> {
     const rawMaterials = await this.rawMaterialService.findAll();
+
     const products = await this.productService.findAll();
+
     const rawMaterialsOnProducts =
       await this.db.rawMaterialsOnProducts.findMany();
 
@@ -45,7 +41,7 @@ class ProductionService {
       return {
         productName: product.name,
         price: Number(product.price),
-        production,
+        productsAmount: production,
         totalProductionValue: Number(product.price) * production,
       };
     });

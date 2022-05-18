@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { IRawMaterial } from '../interfaces/rawMaterialInterfaces';
 import { RawMaterialService } from '../services/RawMaterialService';
+import { IRawMaterial } from '../interfaces/rawMaterialInterfaces';
 
 class RawMaterialController {
   public async create(req: Request, res: Response, next: NextFunction) {

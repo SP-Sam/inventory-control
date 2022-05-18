@@ -1,9 +1,11 @@
-import cors, { CorsOptions } from 'cors';
 import express, { Express, Request, Response } from 'express';
-import { ErrorHandleMiddleware } from './middlewares/ErrorHandlerMiddleware';
-import { productionRouter } from './routers/ProductionRouter';
+import cors, { CorsOptions } from 'cors';
+
 import { productRouter } from './routers/ProductRouter';
 import { rawMaterialRouter } from './routers/RawMaterialRouter';
+import { productionRouter } from './routers/ProductionRouter';
+
+import { ErrorHandlerMiddleware } from './middlewares/ErrorHandlerMiddleware';
 
 class App {
   private app: Express;
@@ -39,7 +41,7 @@ class App {
   }
 
   private errors(): void {
-    this.app.use(ErrorHandleMiddleware);
+    this.app.use(ErrorHandlerMiddleware);
   }
 
   public start(PORT: string | number): void {

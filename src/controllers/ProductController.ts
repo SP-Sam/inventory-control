@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { IProduct } from '../interfaces/productInterfaces';
 import { ProductService } from '../services/ProductService';
+import { IProduct } from '../interfaces/productInterfaces';
 
 class ProductController {
   public async create(req: Request, res: Response, next: NextFunction) {
