@@ -25,26 +25,6 @@ class RawMaterialService {
     return createdRawMaterial;
   }
 
-  private async findByCode(code: number): Promise<boolean> {
-    const foundRawMaterial = await this.db.rawMaterial.findUnique({
-      where: { code },
-    });
-
-    if (foundRawMaterial) return true;
-
-    return false;
-  }
-
-  public async findByName(name: string): Promise<boolean> {
-    const foundRawMaterial = await this.db.rawMaterial.findFirst({
-      where: { name },
-    });
-
-    if (foundRawMaterial) return true;
-
-    return false;
-  }
-
   public async findAll(): Promise<RawMaterial[] | null> {
     const rawMaterials = await this.db.rawMaterial.findMany();
 
@@ -76,6 +56,26 @@ class RawMaterialService {
     const rawMaterial = await this.db.rawMaterial.delete({ where: { code } });
 
     return rawMaterial;
+  }
+
+  private async findByCode(code: number): Promise<boolean> {
+    const foundRawMaterial = await this.db.rawMaterial.findUnique({
+      where: { code },
+    });
+
+    if (foundRawMaterial) return true;
+
+    return false;
+  }
+
+  public async findByName(name: string): Promise<boolean> {
+    const foundRawMaterial = await this.db.rawMaterial.findFirst({
+      where: { name },
+    });
+
+    if (foundRawMaterial) return true;
+
+    return false;
   }
 }
 

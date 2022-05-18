@@ -1,6 +1,7 @@
 import cors, { CorsOptions } from 'cors';
 import express, { Express, Request, Response } from 'express';
 import { ErrorHandleMiddleware } from './middlewares/ErrorHandlerMiddleware';
+import { productionRouter } from './routers/ProductionRouter';
 import { productRouter } from './routers/ProductRouter';
 import { rawMaterialRouter } from './routers/RawMaterialRouter';
 
@@ -34,6 +35,7 @@ class App {
 
     this.app.use('/products', productRouter);
     this.app.use('/rawMaterials', rawMaterialRouter);
+    this.app.use('/production', productionRouter);
   }
 
   private errors(): void {

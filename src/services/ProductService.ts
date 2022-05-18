@@ -17,14 +17,9 @@ class ProductService {
     const productExists = await this.findByName(newProduct.name);
     if (productExists) return null;
 
-    const rawMaterials: IRawMaterial[] = newProduct.rawMaterials.map(
-      (item) => ({
-        name: item.name,
-        quantity: item.quantity,
-      })
+    const isRawMaterialsValid = await this.verifyRawMaterials(
+      newProduct.rawMaterials
     );
-
-    const isRawMaterialsValid = await this.verifyRawMaterials(rawMaterials);
     if (!isRawMaterialsValid) return 'All raw-materials must be registered';
 
     const createdProduct = await this.db.product.create({
@@ -32,7 +27,7 @@ class ProductService {
         name: newProduct.name,
         price: newProduct.price,
         rawMaterials: {
-          create: rawMaterials.map((item) => {
+          create: newProduct.rawMaterials.map((item) => {
             const rawMaterial = {
               connect: {
                 name: item.name,
@@ -63,7 +58,10 @@ class ProductService {
     return products;
   }
 
-  public async update(code: number, newProduct): Promise<Product | null> {
+  public async update(
+    code: number,
+    newProduct: { name: string; price: number }
+  ): Promise<Product | null> {
     const productExists = await this.findByCode(code);
     if (!productExists) return null;
 
