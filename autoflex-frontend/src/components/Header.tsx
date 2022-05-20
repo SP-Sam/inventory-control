@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { HeaderLink } from './HeaderLink';
 
 export function Header() {
   return (
@@ -8,31 +9,16 @@ export function Header() {
           <h1 className="font-bold">Autoflex</h1>
         </Link>
         <ul className="flex flex-col gap-3 items-end text-xs w-full mobile-g2:text-base mobile-g2:flex-row mobile-g:justify-end">
-          <li className="">
-            <Link
-              to="/"
-              className="border px-4 py-1 rounded-md hover:text-gray-800 hover:bg-white transition-all"
-            >
-              Raw Materials
-            </Link>
+          <li>
+            <HeaderLink to="/">Raw Materials</HeaderLink>
           </li>
 
           <li>
-            <Link
-              to="/products"
-              className="border px-4 py-1 rounded-md hover:text-gray-800 hover:bg-white transition-all"
-            >
-              Products
-            </Link>
+            <HeaderLink to="/products">Products</HeaderLink>
           </li>
 
           <li>
-            <Link
-              to="/production"
-              className="border px-4 py-1 rounded-md hover:text-gray-800 hover:bg-white transition-all"
-            >
-              Production
-            </Link>
+            <HeaderLink to="/production">Production</HeaderLink>
           </li>
         </ul>
       </nav>
