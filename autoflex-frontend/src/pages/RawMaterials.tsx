@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { RawMaterial } from '../components/RawMaterial';
 import { getRawMaterials } from '../utils/fetchRawMaterials';
 
 interface IRawMaterial {
@@ -17,16 +18,12 @@ export function RawMaterials() {
   }, []);
 
   return (
-    <ul>
-      {rawMaterials.map(rm => {
-        return (
-          <li key={rm.code}>
-            <p>Nome: {rm.name}</p>
-            <p>Código: {rm.code}</p>
-            <p>Quantity: {rm.quantity}</p>
-          </li>
-        );
-      })}
+    <ul className="my-4">
+      {rawMaterials.map(rm => (
+        <li key={rm.code} className="flex justify-center">
+          <RawMaterial code={rm.code} name={rm.name} quantity={rm.quantity} />
+        </li>
+      ))}
     </ul>
   );
 }
