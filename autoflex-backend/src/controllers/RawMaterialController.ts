@@ -74,9 +74,7 @@ class RawMaterialController {
           .json({ message: `raw-material with the code "${code}" not found` });
       }
 
-      return res
-        .status(200)
-        .json({ message: `"${removedRawMaterial.name}" deleted successfully` });
+      return res.status(204).end();
     } catch (err) {
       next(err);
     }
