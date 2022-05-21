@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { rawMaterialReducer } from './rawMaterialSlice';
 
 const store = configureStore({
-  reducer: {}
-})
+  reducer: {
+    rawMaterial: rawMaterialReducer,
+  },
+});
 
 export { store };
