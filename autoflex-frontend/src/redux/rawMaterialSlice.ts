@@ -14,13 +14,17 @@ export const slice = createSlice({
     initRawMaterials(_state, { payload }) {
       return [...payload];
     },
+    createNewRawMaterial(state, { payload }) {
+      return [...state, payload];
+    },
     removeRawMaterial(state, { payload }) {
       return [...state.filter(rm => rm.code !== payload.code)];
     },
   },
 });
 
-export const { removeRawMaterial, initRawMaterials } = slice.actions;
+export const { initRawMaterials, createNewRawMaterial, removeRawMaterial } =
+  slice.actions;
 
 export const selectRawMaterials = (state: RootState) => state.rawMaterial;
 

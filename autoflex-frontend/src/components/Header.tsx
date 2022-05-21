@@ -3,7 +3,7 @@ import { HeaderLink } from './HeaderLink';
 
 export function Header() {
   return (
-    <header>
+    <header className="fixed top-0 left-0 w-full">
       <nav className="flex items-center bg-gray-800 p-5 text-white">
         <Link to="/">
           <h1 className="font-bold">Autoflex</h1>

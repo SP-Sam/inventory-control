@@ -3,3 +3,8 @@ export interface IRawMaterial {
   name: string;
   quantity: number;
 }
+
+export interface INewRawMaterial {
+  name: string;
+  quantity: number;
+}

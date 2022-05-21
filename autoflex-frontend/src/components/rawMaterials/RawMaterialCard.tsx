@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { deleteRawMaterial } from '../utils/fetchRawMaterials';
-import { IRawMaterial } from '../interfaces/rawMaterialsInterfaces';
+import { deleteRawMaterial } from '../../utils/fetchRawMaterials';
+import { IRawMaterial } from '../../interfaces/rawMaterialsInterfaces';
 import { useDispatch } from 'react-redux';
-import { removeRawMaterial } from '../redux/rawMaterialSlice';
+import { removeRawMaterial } from '../../redux/rawMaterialSlice';
 
 export function RawMaterialCard({ code, name, quantity }: IRawMaterial) {
   const dispatch = useDispatch();

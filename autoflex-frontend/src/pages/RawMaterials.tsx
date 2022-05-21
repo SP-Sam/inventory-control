@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { RawMaterialCard } from '../components/RawMaterialCard';
+import { RawMaterialCard } from '../components/rawMaterials/RawMaterialCard';
+import { RawMaterialForm } from '../components/rawMaterials/RawMaterialForm';
 import {
   initRawMaterials,
   selectRawMaterials,
@@ -19,8 +20,10 @@ export function RawMaterials() {
   }, []);
 
   return (
-    <main>
-      <ul className="my-4">
+    <main className="h-full pt-32 mobile-g2:pt-20 pb-4 flex flex-col items-center">
+      <RawMaterialForm />
+
+      <ul className="w-full">
         {rawMaterials.map(rm => (
           <li key={rm.code} className="flex justify-center">
             <RawMaterialCard
